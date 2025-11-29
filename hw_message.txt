@@ -1,4 +1,4 @@
-1. Ссылка на директорию в github, где находится директория с манифестами кубернетеса https://github.com/mantogin/crud-user/pull/1/commits/705060bf9f7a939ab355065c1907a7c9fd253d82
+1. Ссылка на директорию в github, где находится директория с манифестами кубернетеса: https://github.com/mantogin/crud-user/pull/1/commits/705060bf9f7a939ab355065c1907a7c9fd253d82
 2. Инструкция по запуску приложения: https://github.com/mantogin/crud-user/pull/1/commits/7f9df6447191c33ae77fe72ec7cfe3d7aa243a9e
 3. Postman коллекция: https://github.com/mantogin/crud-user/pull/1/commits/705060bf9f7a939ab355065c1907a7c9fd253d82#diff-9b2289bd8ebf6cb01d3ddcdde2663f5dce334c857603ea7af85f1ae561695640
 4. Скриншот/вывод исполнения: https://github.com/mantogin/crud-user/pull/1/commits/705060bf9f7a939ab355065c1907a7c9fd253d82#diff-e4d4aec136c4ba0b9041d1a9ab5693910c8da876a4e5396cf1f65adcb24ad765
