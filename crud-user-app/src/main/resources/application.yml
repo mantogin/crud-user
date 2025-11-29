@@ -1,0 +1,15 @@
+server:
+  port: 8000
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${PG_IP}:5432/mcua_db?currentSchema=users
+    username: mcua
+    password: mcua
+    driver-class-name: org.postgresql.Driver
+
+management:
+  endpoints.web.exposure.include: health, info, env
+  endpoint.env:
+      show-values: ALWAYS
+#      enabled: true

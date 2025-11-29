@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "faa07816-1d36-481b-9cdc-766ff60001fc",
+		"name": "mantogin-crud-user-app-postman-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50241720",
+		"_collection_link": "https://mantogin-2217932.postman.co/workspace/Anton-Malmygin's-Workspace~da479b08-9671-4a9a-8f34-a9a19ba5c590/collection/50241720-faa07816-1d36-481b-9cdc-766ff60001fc?action=share&source=collection_link&creator=50241720"
+	},
+	"item": [
+		{
+			"name": "createUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"e723d163-f644-4e11-8d99-f53933cd02db\",\r\n    \"userName\": \"Name e723d163-f644-4e11-8d99-f53933cd02db\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://arch.homework:80/user",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "80",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "readUser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://arch.homework:80/user/e723d163-f644-4e11-8d99-f53933cd02db",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "80",
+					"path": [
+						"user",
+						"e723d163-f644-4e11-8d99-f53933cd02db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateUser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"e723d163-f644-4e11-8d99-f53933cd02dc\",\r\n    \"userName\": \"Name e723d163-f644-4e11-8d99-f53933cd02dc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://arch.homework:80/user/e723d163-f644-4e11-8d99-f53933cd02db",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "80",
+					"path": [
+						"user",
+						"e723d163-f644-4e11-8d99-f53933cd02db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://arch.homework:80/user/e723d163-f644-4e11-8d99-f53933cd02dc",
+					"protocol": "http",
+					"host": [
+						"arch",
+						"homework"
+					],
+					"port": "80",
+					"path": [
+						"user",
+						"e723d163-f644-4e11-8d99-f53933cd02dc"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

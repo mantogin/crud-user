@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rewrite-ingress
+  annotations:
+    spec.ingressClassName: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - host: arch.homework
+      http:
+        paths:
+          - path: /mantogin-crud-user-app(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: load-balancer
+                port:
+                  number: 80
