@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mantogin-crud-user-app
+  labels:
+    app: mantogin-crud-user-app
+spec:
+# TODO: вернуть 2 реплики
+#  replicas: 2
+  replicas: 1
+#  TODO: Удалить
+#  minReadySeconds: 10
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      env: local
+  template:
+    metadata:
+      labels:
+        env: local
+    spec:
+      containers:
+        - name: mantogin-crud-user-app
+          image: mantogin/mantogin-crud-user-app:1.0.0
+          ports:
+            - containerPort: 8000
+          env:
+#            - name: DB_CONFIG
+#              valueFrom:
+#                configMapKeyRef:
+#                  name: config-map
+#                  key: dbconfig
+            - name: APP_CONFIG
+              valueFrom:
+                configMapKeyRef:
+                  name: config-map
+                  key: appConfig
+            - name: PG_IP
+              valueFrom:
+                configMapKeyRef:
+                  name: config-map
+                  key: pgIp
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: db_user
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: db_password
+          volumeMounts:
+            - name: config
+              mountPath: "/config"
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: config-map

@@ -1,0 +1,14 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ru.mantogin.crud.user</groupId>
+    <artifactId>mantogin-crud-user</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>mantogin-crud-user-app</module>
+        <module>mantogin-crud-user-db</module>
+    </modules>
+
+    <!-- Common dependencies, build plugins, etc. -->
+</project>
