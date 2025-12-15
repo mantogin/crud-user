@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 import java.util.UUID;
 
 @RestController
 public class AppController {
 
     private JdbcTemplate jdbcTemplate;
+    private Random random = new Random();
 
     private static final class UserRawMapper implements RowMapper<User> {
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -31,8 +33,27 @@ public class AppController {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    private void sleep(){
+        try {
+            Thread.sleep(random.nextLong(2000) + 1);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void addConfusion() {
+
+        if (10 % (random.nextLong(10) + 1L) == 0) {
+            throw new RuntimeException("Confusion Runtime Exception");
+        } else {
+            sleep();
+        }
+    }
+
     @PostMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createUser(@RequestBody User user) {
+
+        addConfusion();
 
         String sql = "insert into users.user(id, user_name) values(?, ?);";
         jdbcTemplate.update(sql, user.id(), user.userName());
@@ -52,6 +73,8 @@ public class AppController {
 //            System.out.println(entry.getKey() + " = " + entry.getValue());
 //        }
 
+        addConfusion();
+
         String sql = "select id, user_name from users.user where id = ?";
         User user = jdbcTemplate.queryForObject(sql, new UserRawMapper(), id);
 
@@ -63,6 +86,8 @@ public class AppController {
     @PutMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> updateUser(@PathVariable UUID id, @RequestBody User user) {
 
+        addConfusion();
+
         String sql = "update users.user set id = ?, user_name = ? where id = ?;";
         jdbcTemplate.update(sql, user.id(), user.userName(), id);
 
@@ -73,6 +98,8 @@ public class AppController {
 
     @DeleteMapping(value = "/user/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> deleteUser(@PathVariable UUID id) {
+
+        addConfusion();
 
         String sql = "delete from users.user where id = ?;";
         jdbcTemplate.update(sql, id);

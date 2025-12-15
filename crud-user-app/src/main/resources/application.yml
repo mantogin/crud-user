@@ -9,7 +9,20 @@ spring:
     driver-class-name: org.postgresql.Driver
 
 management:
-  endpoints.web.exposure.include: health, info, env
-  endpoint.env:
+  endpoints.web.exposure.include: health, info, env, prometheus # Убедитесь, что prometheus здесь
+  endpoint:
+    env:
       show-values: ALWAYS
-#      enabled: true
+    # Явно включаем эндпоинт Prometheus
+    prometheus.enabled: true
+    # Метрики включены по умолчанию, эти строки можно убрать, но они не мешают:
+    # metrics:
+    #   enabled: true
+
+  metrics:
+    # Главное изменение: настройки distribution перенесены на уровень выше, в management.metrics
+    distribution:
+      # Это включает появление метрик с суффиксом "_bucket"
+      percentiles-histogram.http.server.requests: true
+      # Задание конкретных процентилей (создает метрики с суффиксом "_percentile")
+      percentiles.http.server.requests: 0.5, 0.95, 0.99

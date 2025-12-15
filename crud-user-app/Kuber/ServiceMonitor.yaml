@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: app-metrics-monitor
+  labels:
+    app: app-metrics-monitor
+    release: prometheus-stack
+spec:
+  endpoints:
+    - port: metrics
+      #scrapeTimeout: 30s
+      path: /actuator/prometheus
+      interval: 30s
+      honorLabels: true
+      scheme: http
+  #  jobLabel: stack
+  namespaceSelector:
+    matchNames:
+      - default
+  selector:
+    matchLabels:
+      app: app-metrics-service
+  

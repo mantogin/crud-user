@@ -5,11 +5,7 @@ metadata:
   labels:
     app: mantogin-crud-user-app
 spec:
-# TODO: вернуть 2 реплики
-#  replicas: 2
-  replicas: 1
-#  TODO: Удалить
-#  minReadySeconds: 10
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -25,15 +21,10 @@ spec:
     spec:
       containers:
         - name: mantogin-crud-user-app
-          image: mantogin/mantogin-crud-user-app:1.0.0
+          image: mantogin/mantogin-crud-user-app:2.0.0
           ports:
             - containerPort: 8000
           env:
-#            - name: DB_CONFIG
-#              valueFrom:
-#                configMapKeyRef:
-#                  name: config-map
-#                  key: dbconfig
             - name: APP_CONFIG
               valueFrom:
                 configMapKeyRef:
